@@ -77,9 +77,6 @@ export default function UserRoutes(app) {
     res.json(currentUser);
   };
 
-  //mongodb+srv://rayan:supersecretpassword@kanbas.aybd5.mongodb.net/
-
-  // mongodb+srv://rayan:supersecretpassword@kanbas.aybd5.mongodb.net/?retryWrites=true&w=majority&appName=Kanbas
   
   const signin = async (req, res) => {
     const { username, password } = req.body;
