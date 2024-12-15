@@ -17,4 +17,3 @@ export function deleteModule(moduleId) {
 export function updateModule(moduleId, moduleUpdates) {
   return model.updateOne({ _id: moduleId }, moduleUpdates);
  }
- 

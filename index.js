@@ -11,16 +11,17 @@ import "dotenv/config";
 import AssignmentsRoutes from './Kanbas/Assignments/routes.js';
 import PeopleRoutes from './Kanbas/People/routes.js';
 import QuizzesRoutes from './Kanbas/Quizzes/routes.js';
+import QuestionsRoutes from './Kanbas/Questions/routes.js';
+import ResultsRoutes from './Kanbas/Results/routes.js';
 import mongoose from "mongoose";
-import "dotenv/config";
 
-const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas"
+
+const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas-project"
 mongoose.connect(CONNECTION_STRING);
 const app = express()
 app.use(cors({   credentials: true,
     origin: process.env.NETLIFY_URL || "http://localhost:3000",
 })); 
-
 
 const sessionOptions = {
 secret: process.env.SESSION_SECRET || "kanbas",
@@ -48,4 +49,6 @@ EnrollmentRoutes(app);
 AssignmentsRoutes(app);
 PeopleRoutes(app);
 QuizzesRoutes(app);
+QuestionsRoutes(app);
+ResultsRoutes(app);
 app.listen(process.env.PORT || 4000)

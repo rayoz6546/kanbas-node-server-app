@@ -1,5 +1,4 @@
 import * as peopleDao from "./dao.js"
-import * as enrollmentsDao from "../Enrollments/dao.js"
 
 export default function PeopleRoutes(app) {
 
@@ -11,3 +10,4 @@ export default function PeopleRoutes(app) {
       });
 
 }
+
