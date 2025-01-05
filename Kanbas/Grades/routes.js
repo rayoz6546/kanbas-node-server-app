@@ -28,7 +28,6 @@ app.post("/api/grades/:gradeId", async (req, res) => {
   }
 });
 
-
   app.get("/api/grades/:courseId", async (req, res) => {
       const {courseId} = req.params
       const people = await gradesDao.findGradesForCourse(courseId);
