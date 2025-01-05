@@ -25,6 +25,7 @@ const schema = new mongoose.Schema(
     description: String,
     published: Boolean,
     questions: Object,
+    percentage: Number,
   },
   { collection: "quizzes" }
 );

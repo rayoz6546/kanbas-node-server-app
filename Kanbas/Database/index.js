@@ -6,5 +6,6 @@ import users from "./users.js";
 import quizzes from "./quizzes.js";
 import questions from "./questions.js";
 import results from "./results.js";
+import lessons from "./lessons.js";
 
-export default {  courses, modules, assignments, enrollments, users, quizzes, questions, results};
+export default {  courses, modules, assignments, enrollments, users, quizzes, questions, results, lessons};

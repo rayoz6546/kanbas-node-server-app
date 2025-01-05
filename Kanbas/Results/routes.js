@@ -15,6 +15,12 @@ export default function ResultsRoutes(app) {
           const results = await resultsDao.findResults(quizId,userId);
           res.json(results);
         });
+
+        app.get("/api/results/all/:courseId/:userId", async (req, res) => {
+          const { courseId, userId } = req.params;
+          const results = await resultsDao.findResultsForUser(courseId,userId);
+          res.json(results);
+        });
       
         app.post("/api/results/:quizId/:userId", async (req, res) => {
           const {quizId, userId} = req.params;

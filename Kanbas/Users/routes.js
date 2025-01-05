@@ -24,6 +24,17 @@ export default function UserRoutes(app) {
   };
   app.get("/api/users/:uid/courses", findCoursesForUser);
 
+
+  const findUsersForCourse = async (req, res) => {
+
+    let { courseId } = req.params;
+
+    const users = await enrollmentsDao.findUsersForCourse(courseId);
+    res.json(users);
+  };
+  app.get("/api/users/:courseId/allUsersForCourse", findUsersForCourse);
+
+
   const createCourse = async (req, res) => {
     const currentUser = req.session["currentUser"];
     const newCourse = await courseDao.createCourse(req.body);

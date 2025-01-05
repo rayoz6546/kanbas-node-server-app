@@ -11,6 +11,10 @@ export function findResults(quizId, userId) {
   return model.find({quizId:quizId, userId:userId})
   }
 
+export function findResultsForUser(courseId, userId) {
+  return model.find({courseId:courseId, userId:userId})
+}
+
 
   export function updateResults(resultId, resultUpdates) {
     return model.updateOne({ _id: resultId }, resultUpdates);

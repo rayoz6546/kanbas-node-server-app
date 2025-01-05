@@ -17,3 +17,34 @@ export function deleteModule(moduleId) {
 export function updateModule(moduleId, moduleUpdates) {
   return model.updateOne({ _id: moduleId }, moduleUpdates);
  }
+
+
+
+ export async function addLessonToModule(moduleId, lesson) {
+  return model.updateOne(
+    { _id: moduleId },
+    { $push: { lessons: lesson } }
+  );
+}
+
+
+export async function deleteLessonFromModule(moduleId, lessonId) {
+  return model.updateOne(
+    { _id: moduleId },
+    { $pull: { lessons: { _id: lessonId } } }
+  );
+}
+
+
+export async function updateLessonInModule(moduleId, lessonId, updatedLesson) {
+  return model.updateOne(
+    { _id: moduleId, "lessons._id": lessonId },
+    {
+      $set: {
+        "lessons.$.name": updatedLesson.name,
+        "lessons.$.published": updatedLesson.published,
+
+      },
+    }
+  );
+}
