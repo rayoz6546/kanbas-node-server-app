@@ -44,6 +44,61 @@ app.use(session(sessionOptions));
       
 app.use(express.json());
 
+import { findUserById, updateUser } from "./Kanbas/Users/dao.js";
+
+function convertToSeconds(hms) {
+    const [hours, minutes, seconds] = hms.split(":").map(Number);
+    return hours * 3600 + minutes * 60 + seconds;
+}
+
+function convertToHMS(totalSeconds) {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+
+    return [
+        hours.toString().padStart(2, "0"),
+        minutes.toString().padStart(2, "0"),
+        seconds.toString().padStart(2, "0")
+    ].join(":");
+}
+
+
+app.use(async (req, res, next) => {
+    if (req.session.currentUser) {
+        const currentUser = req.session.currentUser;
+        const now = new Date();
+
+        try {
+            const user = await findUserById(currentUser._id);
+
+            // Convert the current `hh:mm:ss` totalActivity to seconds
+            const totalActivityTimeInSeconds = user.totalActivity
+                ? convertToSeconds(user.totalActivity)
+                : 0;
+
+            // Add the new activity duration (e.g., 60 seconds)
+            const updatedTotalTimeInSeconds = totalActivityTimeInSeconds + 60;
+
+            // Convert back to `hh:mm:ss`
+            const updatedTotalActivity = convertToHMS(updatedTotalTimeInSeconds);
+
+            // Update the user in the database
+            await updateUser(currentUser._id, {
+                lastActivity: now,
+                totalActivity: updatedTotalActivity,
+            });
+
+            req.session.currentUser.lastActivity = now;
+        } catch (error) {
+            console.error("Error updating user activity:", error);
+        }
+    }
+    next();
+});
+
+
 
 app.use(fileUpload());
 

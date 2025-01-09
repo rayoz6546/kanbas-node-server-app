@@ -11,8 +11,8 @@ const userSchema = new mongoose.Schema({
       type: String,
       enum: ["STUDENT", "FACULTY", "ADMIN"],
     },
-    lastActivity: Date,
-    totalActivity: String,
+    lastActivity: { type: Date, default: null },
+    totalActivity: { type: String, default: "00:00:00" },
   },
   { collection: "users" }
 );

@@ -143,4 +143,32 @@ export default function UserRoutes(app) {
   app.post("/api/users/signin", signin);
   app.post("/api/users/signout", signout);
   app.post("/api/users/profile", profile);
+
+
+
+
+  app.post("/api/users/:userId/activity", async (req, res) => {
+      const { userId } = req.params;
+  
+      try {
+          const user = await findUserById(userId);
+          const now = new Date();
+  
+          const totalActivityTime = user.totalActivity ? parseInt(user.totalActivity) : 0;
+          const updatedTotalActivity = totalActivityTime + 1; // Increment by 1 minute or desired interval
+  
+          const updatedUser = await updateUser(userId, {
+              lastActivity: now,
+              totalActivity: updatedTotalActivity,
+          });
+  
+          res.json(updatedUser);
+      } catch (error) {
+          console.error("Error updating activity:", error);
+          res.status(500).send("Failed to update activity");
+      }
+  });
+  
+
+  
 }
