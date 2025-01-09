@@ -49,11 +49,6 @@ const enrollUserInCourse = async (req, res) => {
   app.put("/api/enrollments/:enrollmentId", updateEnrollment)
 
 
-
-
-
-
-
 }
 
 
