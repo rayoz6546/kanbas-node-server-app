@@ -5,7 +5,11 @@ const courseSchema = new mongoose.Schema(
    number: String,
    credits: Number,
    description: String,
-   image: String,
+   department: {
+    type: String,
+    enum: ["Arts & Humanities", "Social Sciences", "Natural Sciences",
+       "Engineering & Technology", "Business & Management", "Health Sciences", "Law", "Computer Science & IT" ]
+   }
  },
  { collection: "courses" }
 );

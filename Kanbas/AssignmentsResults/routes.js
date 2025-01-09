@@ -44,6 +44,12 @@ export default function AssignmentsResultsRoutes(app) {
         res.json(results);
     });
 
+    app.get("/api/assignmentsResults", async (req, res) => {
+      const { userId } = req.params;
+      const results = await assignmentresultsDao.findAllResults();
+      res.json(results);
+  });
+
 
     app.get("/api/assignmentsResults/assignment/:assignmentId", async (req, res) => {
         const { assignmentId} = req.params;

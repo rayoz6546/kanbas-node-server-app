@@ -18,10 +18,4 @@ export default function AssignmentsRoutes(app) {
 });
 
 
-
-
-
-
-
-
 }

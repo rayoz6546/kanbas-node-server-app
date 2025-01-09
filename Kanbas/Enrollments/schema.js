@@ -3,8 +3,7 @@ const enrollmentSchema = new mongoose.Schema(
  {
    course: { type: mongoose.Schema.Types.ObjectId, ref: "CourseModel" },
    user:   { type: mongoose.Schema.Types.ObjectId, ref: "UserModel"   },
-   grade: Number,
-   letterGrade: String,
+   courseGrade: Number,
    enrollmentDate: Date,
    status: {
      type: String,

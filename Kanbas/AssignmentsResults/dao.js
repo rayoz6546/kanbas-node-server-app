@@ -6,6 +6,10 @@ export function findResultsByUser(userId) {
   return model.find({ userId: userId });
 }
 
+export function findAllResults(userId) {
+  return model.find();
+}
+
 export function findAllResultsForAssignment(assignmentId)  {
     return model.find({assignmentId:assignmentId})
 }

@@ -7,7 +7,7 @@ const schema = new mongoose.Schema(
     available_from: String,
     available_until: String,
     due_date: String,
-    points: String,
+    points: Number,
     number_questions: String,
     score: String,
     quiz_type: String,

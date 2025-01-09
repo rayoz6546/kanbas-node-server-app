@@ -6,8 +6,19 @@ import * as quizzesDao from "../Quizzes/dao.js";
 export default function CourseRoutes(app) {
   
   app.get("/api/courses", async (req, res) => {
+    const { department, name } = req.query;
+    if (department) {      
+      const courses = await dao.findCoursesByDepartment(department);
+      res.json(courses);
+      return; }
+
+    if (name) {
+      const courses = await dao.findCoursesByPartialName(name);
+      res.json(courses);
+      return;
+    }
     const courses = await dao.findAllCourses();
-    res.send(courses);
+    res.json(courses);
   });
 
 

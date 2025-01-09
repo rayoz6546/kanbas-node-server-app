@@ -23,3 +23,7 @@ export function findResultsForUser(courseId, userId) {
   export function deleteAll(courseId, quizId) {
     return model.deleteMany({quizId: quizId, courseId:courseId})
   }
+
+  export function findAllResults() { 
+    return model.find()
+  }

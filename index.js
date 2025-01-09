@@ -16,7 +16,7 @@ import LessonsRoutes from './Kanbas/Lessons/routes.js';
 import FileRoutes from './Kanbas/Files/routes.js';
 import AssignmentsResultsRoutes from "./Kanbas/AssignmentsResults/routes.js";
 import fileUpload from 'express-fileupload';
-import GradeRoutes from './Kanbas/Grades/routes.js';
+
 import StudentFileRoutes from './Kanbas/StudentFiles/routes.js';
 
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas-project"
@@ -60,6 +60,5 @@ ResultsRoutes(app);
 LessonsRoutes(app);
 FileRoutes(app);
 AssignmentsResultsRoutes(app);
-GradeRoutes(app);
 StudentFileRoutes(app);
 app.listen(process.env.PORT || 4000)

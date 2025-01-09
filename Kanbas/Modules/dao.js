@@ -42,6 +42,8 @@ export async function updateLessonInModule(moduleId, lessonId, updatedLesson) {
     {
       $set: {
         "lessons.$.name": updatedLesson.name,
+        "lessons.$.link": updatedLesson.link,
+        
         "lessons.$.published": updatedLesson.published,
 
       },
